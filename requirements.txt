@@ -1,0 +1,2 @@
+# The Digital Compass runs on the Python standard library alone (Python 3.9+).
+# There is nothing to install — just run:  python run.py
