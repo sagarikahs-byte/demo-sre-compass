@@ -1,0 +1,36 @@
+{
+  "incident_window": {
+    "from": "2026-10-28T03:12:00Z",
+    "to": "2026-10-28T03:16:00Z"
+  },
+  "deploys": [
+    {"service": "payments-service", "version": "2026.10.28-a", "at": "2026-10-28T03:10:00Z", "change": "connection-pool tuning"},
+    {"service": "orders-service", "version": "2026.10.27-c", "at": "2026-10-27T21:03:00Z", "change": "add pagination cache"}
+  ],
+  "api_to_service": {
+    "/api/checkout": "checkout-service",
+    "/api/cart": "cart-service",
+    "/api/orders": "orders-service",
+    "gateway": "api-gateway"
+  },
+  "dependency_graph": [
+    {"from": "api-gateway", "to": "checkout-service", "type": "routes_to"},
+    {"from": "api-gateway", "to": "cart-service", "type": "routes_to"},
+    {"from": "api-gateway", "to": "orders-service", "type": "routes_to"},
+    {"from": "checkout-service", "to": "payments-service", "type": "depends_on"},
+    {"from": "orders-service", "to": "payments-service", "type": "depends_on"},
+    {"from": "payments-service", "to": "auth-service", "type": "depends_on"},
+    {"from": "orders-service", "to": "cache-service", "type": "depends_on"},
+    {"from": "checkout-service", "to": "infra-service", "type": "depends_on"}
+  ],
+  "oncall": {
+    "checkout-service": "Checkout On-Call",
+    "payments-service": "Payments On-Call",
+    "cart-service": "Cart On-Call",
+    "orders-service": "Orders On-Call",
+    "api-gateway": "Edge On-Call",
+    "auth-service": "Auth On-Call",
+    "cache-service": "Cache On-Call",
+    "infra-service": "Infra On-Call"
+  }
+}

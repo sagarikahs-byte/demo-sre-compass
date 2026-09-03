@@ -1,0 +1,57 @@
+[
+  {
+    "id": "ex-1",
+    "ts": "2026-10-28T03:12:00Z",
+    "errorCode": "503",
+    "api": "/api/checkout",
+    "service": "checkout-service",
+    "host": "checkout-pod-01",
+    "message": "503 Service Unavailable",
+    "traceId": "a1b2c3d4",
+    "severity": "critical"
+  },
+  {
+    "id": "ex-2",
+    "ts": "2026-10-28T03:12:04Z",
+    "errorCode": "503",
+    "api": "/api/checkout",
+    "service": "checkout-service",
+    "host": "checkout-pod-02",
+    "message": "dependency call failed: payments",
+    "traceId": "e5f6a7b8",
+    "severity": "critical"
+  },
+  {
+    "id": "ex-3",
+    "ts": "2026-10-28T03:12:09Z",
+    "errorCode": "timeout",
+    "api": "/api/cart",
+    "service": "cart-service",
+    "host": "cart-pod-03",
+    "message": "read timeout after 2000ms",
+    "traceId": "c9d0e1f2",
+    "severity": "warning"
+  },
+  {
+    "id": "ex-4",
+    "ts": "2026-10-28T03:12:15Z",
+    "errorCode": "5xx",
+    "api": "gateway",
+    "service": "api-gateway",
+    "host": "gw-edge-01",
+    "message": "elevated 5xx aggregate at edge",
+    "traceId": "33445566",
+    "severity": "critical"
+  },
+  {
+    "id": "ex-5",
+    "ts": "2026-10-28T03:12:22Z",
+    "errorCode": "latency",
+    "api": "/api/orders",
+    "service": "orders-service",
+    "host": "orders-pod-07",
+    "message": "p99 latency over threshold",
+    "traceId": "778899aa",
+    "severity": "warning"
+  }
+]
