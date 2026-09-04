@@ -1,0 +1,30 @@
+{
+  "incident_window": {
+    "from": "2026-10-28T03:12:00Z",
+    "to": "2026-10-28T03:16:00Z"
+  },
+  "deploys": [
+    {"service": "auth-service", "version": "2026.10.28-a", "at": "2026-10-28T03:10:00Z", "change": "connection-pool tuning"},
+    {"service": "cache-service", "version": "2026.10.27-c", "at": "2026-10-27T21:03:00Z", "change": "add pagination cache"}
+  ],
+  "api_to_service": {
+    "/api/checkout": "infra-service",
+    "/api/cart": "cart-service",
+    "/api/orders": "cache-service",
+    "gateway": "api-gateway"
+  },
+  "dependency_graph": [
+    {"from": "api-gateway", "to": "infra-service", "type": "routes_to"},
+    {"from": "api-gateway", "to": "cart-service", "type": "routes_to"},
+    {"from": "api-gateway", "to": "cache-service", "type": "routes_to"},
+    {"from": "infra-service", "to": "auth-service", "type": "depends_on"},
+    {"from": "cache-service", "to": "auth-service", "type": "depends_on"}
+  ],
+  "oncall": {
+    "infra-service": "Infra On-Call",
+    "auth-service": "Auth On-Call",
+    "cart-service": "Cart On-Call",
+    "cache-service": "Cache On-Call",
+    "api-gateway": "Edge On-Call"
+  }
+}
